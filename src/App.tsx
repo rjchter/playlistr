@@ -1,13 +1,14 @@
-import { Routes, Route, BrowserRouter as Router } from 'react-router'
-import LandingPage from './pages/LandingPage'
-import { ThemeProvider } from '@emotion/react'
-import { CssBaseline } from '@mui/material'
-import theme from './theme'
-import CardGenerator from './pages/CardGenerator'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Routes, Route, BrowserRouter as Router } from "react-router";
+import LandingPage from "./pages/LandingPage";
+import { ThemeProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
+import theme from "./theme";
+import CardGenerator from "./pages/CardGenerator";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import MainGamePage from "./pages/MainGamePage.tsx";
 
 function App() {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
 
   return (
     <ThemeProvider theme={theme}>
@@ -17,12 +18,12 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/create-cards" element={<CardGenerator />} />
+            <Route path="/game" element={<MainGamePage />} />
           </Routes>
         </Router>
-      </QueryClientProvider >
+      </QueryClientProvider>
     </ThemeProvider>
-
-  )
+  );
 }
 
-export default App
+export default App;
