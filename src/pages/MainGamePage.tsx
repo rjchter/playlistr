@@ -70,24 +70,64 @@ function MainGamePage() {
           <Box display={"flex"} flexDirection={"column"} gap={2} mt={2} mb={2}>
             <FormControl fullWidth>
               <TextField
-                label="Kategorie"
-                fullWidth
-                sx={{
-                  borderRadius: 1,
-                }}
-                onChange={handleCategoryChange}
-                value={category}
-              />
-            </FormControl>
-            <FormControl fullWidth>
-              <TextField
                 label="Spotify Playlist Link"
                 fullWidth
                 sx={{
                   borderRadius: 1,
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "primary.main", // Outline Farbe
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "primary.main", // Hover-Farbe für die Border
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "primary.main", // Fokus-Farbe für die Border
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "primary.main", // Label-Farbe
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "primary.main", // Value (Text) Farbe
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "primary.main", // Placeholder-Farbe
+                  },
                 }}
                 onChange={handlePlaylistLinkChange}
                 value={playlistLink}
+              />
+            </FormControl>
+            <FormControl fullWidth>
+              <TextField
+                label="Kategorie"
+                fullWidth
+                sx={{
+                  borderRadius: 1,
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "primary.main", // Outline Farbe
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "primary.main", // Hover-Farbe für die Border
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "primary.main", // Fokus-Farbe für die Border
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "primary.main", // Label-Farbe
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "primary.main", // Value (Text) Farbe
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "primary.main", // Placeholder-Farbe
+                  },
+                }}
+                onChange={handleCategoryChange}
+                value={category}
               />
             </FormControl>
           </Box>
