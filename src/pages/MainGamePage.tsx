@@ -61,68 +61,82 @@ function MainGamePage() {
             variant="h5"
             sx={{
               fontWeight: "bold",
-              mb: 3,
               textAlign: "center",
             }}
+            color="text.secondary"
           >
-            Play Hitster with Your Own Playlist
+            Spiele Hitster mit deiner eigenen Playlist!
           </Typography>
-          <FormControl fullWidth sx={{ mb: 2 }}>
-            <TextField
-              label="Category (e.g., Oldies, Soundtracks)"
-              fullWidth
-              sx={{
-                borderRadius: 1,
-                mb: 2,
-              }}
-            />
-          </FormControl>
-          <FormControl fullWidth sx={{ mb: 3 }}>
-            <TextField
-              label="Spotify Playlist Link"
-              fullWidth
-              sx={{
-                borderRadius: 1,
-              }}
-            />
-          </FormControl>
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{
-              fontWeight: "bold",
-            }}
-            onClick={handleLoadSongs}
-          >
-            Load Playlist
-          </Button>
-          {/* Playlist status block */}
-          <Box>
-            {playlistItems && (
-              <Alert severity="success" sx={{ backgroundColor: "transparent" }}>
-                Playlist wurde erfolgreich geladen!
-              </Alert>
-            )}
-            {isLoading && <CircularProgress />}
-            {isError && (
-              <Alert severity="error">
-                Es ist ein Fehler aufgetreten. Versuche es später erneut
-              </Alert>
-            )}
+          <Box display={"flex"} flexDirection={"column"} gap={2} mt={2} mb={2}>
+            <FormControl fullWidth>
+              <TextField
+                label="Kategorie"
+                fullWidth
+                sx={{
+                  borderRadius: 1,
+                }}
+                onChange={handleCategoryChange}
+                value={category}
+              />
+            </FormControl>
+            <FormControl fullWidth>
+              <TextField
+                label="Spotify Playlist Link"
+                fullWidth
+                sx={{
+                  borderRadius: 1,
+                }}
+                onChange={handlePlaylistLinkChange}
+                value={playlistLink}
+              />
+            </FormControl>
           </Box>
-
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{
-              fontWeight: "bold",
-            }}
-            disabled
+          <Box
+            display={"flex"}
+            flexDirection={"column"}
+            gap={1.5}
+            justifyContent={"center"}
+            alignItems={"center"}
           >
-            Spiel starten
-          </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{
+                fontWeight: "bold",
+              }}
+              onClick={handleLoadSongs}
+            >
+              Load Playlist
+            </Button>
+            <Box>
+              {playlistItems && (
+                <Alert
+                  severity="success"
+                  sx={{ backgroundColor: "transparent" }}
+                >
+                  Playlist wurde erfolgreich geladen!
+                </Alert>
+              )}
+              {isLoading && <CircularProgress />}
+              {isError && (
+                <Alert severity="error">
+                  Es ist ein Fehler aufgetreten. Versuche es später erneut
+                </Alert>
+              )}
+            </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{
+                fontWeight: "bold",
+              }}
+              disabled={!playlistItems}
+            >
+              Spiel starten
+            </Button>
+          </Box>
         </CardContent>
       </Card>
     </Box>
