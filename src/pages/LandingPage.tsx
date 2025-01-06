@@ -5,14 +5,7 @@ function LandingPage() {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        background: `linear-gradient(to top, ${"#723cc9"}, ${"#fdf7ff"})`,
-      }}
-    >
+    <>
       <Box
         sx={{
           flex: 1,
@@ -111,7 +104,7 @@ function LandingPage() {
           <a href="https://github.com/effem">FMK</a>
         </Typography>
       </Box>
-    </Box>
+    </>
   );
 }
 

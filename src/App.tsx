@@ -6,6 +6,8 @@ import theme from "./theme";
 import CardGenerator from "./pages/CardGenerator";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MainGamePage from "./pages/MainGamePage.tsx";
+import Game from "./components/Game.tsx";
+import Layout from "./components/Layout.tsx";
 
 function App() {
   const queryClient = new QueryClient();
@@ -16,9 +18,12 @@ function App() {
         <CssBaseline />
         <Router>
           <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/create-cards" element={<CardGenerator />} />
-            <Route path="/game" element={<MainGamePage />} />
+            <Route path="/" element={<Layout />}>
+              <Route index element={<LandingPage />} />
+              <Route path="/create-cards" element={<CardGenerator />} />
+              <Route path="/game" element={<MainGamePage />} />
+              <Route path="/game/play" element={<Game />}></Route>
+            </Route>
           </Routes>
         </Router>
       </QueryClientProvider>
