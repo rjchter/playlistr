@@ -92,25 +92,6 @@ function LandingPage() {
           </Box>
         </Container>
       </Box>
-      <Box
-        sx={{
-          backgroundColor: theme.palette.background.paper,
-          py: 2,
-          textAlign: "center",
-          width: "100%",
-        }}
-      >
-        <Typography variant="body2" color="text.secondary">
-          © 2024 Playlistr - Entwickelt von{" "}
-          <a style={{ color: "inherit" }} href="https://github.com/rjchter">
-            rjchter
-          </a>{" "}
-          🌟 Inspiriert von:{" "}
-          <a style={{ color: "inherit" }} href="https://github.com/effem">
-            FMK
-          </a>
-        </Typography>
-      </Box>
     </>
   );
 }

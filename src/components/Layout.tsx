@@ -1,7 +1,9 @@
 import { Outlet } from "react-router";
-import { Box } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 function Layout() {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
@@ -9,12 +11,39 @@ function Layout() {
         background: `linear-gradient(to top, ${"#723cc9"}, ${"#fdf7ff"})`,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 4,
       }}
     >
-      <Outlet />
+      <Box
+        padding={4}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
+        <Outlet />
+      </Box>
+      <Box
+        sx={{
+          backgroundColor: theme.palette.background.paper,
+          py: 2,
+          textAlign: "center",
+          width: "100%",
+        }}
+      >
+        <Typography variant="body2" color="text.secondary">
+          © 2024 Playlistr - Entwickelt von{" "}
+          <a style={{ color: "inherit" }} href="https://github.com/rjchter">
+            rjchter
+          </a>{" "}
+          🌟 Inspiriert von:{" "}
+          <a style={{ color: "inherit" }} href="https://github.com/effem">
+            FMK
+          </a>
+        </Typography>
+      </Box>
     </Box>
   );
 }
