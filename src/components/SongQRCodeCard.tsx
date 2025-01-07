@@ -5,10 +5,10 @@ import { Track } from "@spotify/web-api-ts-sdk";
 
 type SongQRCodeCardProps = {
   track: Track;
-  handleFlip: (id: string) => void;
+  onClick: () => void;
 };
 
-function SongQRCodeCard({ track, handleFlip }: SongQRCodeCardProps) {
+function SongQRCodeCard({ track, onClick }: SongQRCodeCardProps) {
   return (
     <Card
       sx={{
@@ -25,7 +25,7 @@ function SongQRCodeCard({ track, handleFlip }: SongQRCodeCardProps) {
     >
       <SongCardQRCode track={track} />
       <IconButton
-        onClick={() => handleFlip}
+        onClick={onClick}
         sx={{ position: "absolute", bottom: 16, right: 16 }}
       >
         <LoopIcon />

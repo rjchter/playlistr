@@ -37,82 +37,95 @@ function CardGenerator() {
   };
 
   return (
-    <Box
-      sx={{
-        height: "100vh",
-        background: `linear-gradient(to top, ${"#723cc9"}, ${"#fdf7ff"})`,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        overflowY: "auto",
-      }}
-    >
-      <Container maxWidth="sm" sx={{ textAlign: "center", pt: 6 }}>
+    <Box height={1} display={"flex"} flexDirection={"column"} gap={4} width={1}>
+      <Container maxWidth="sm" sx={{ textAlign: "center" }}>
         <Typography
           variant="h3"
           sx={{
             fontWeight: "bold",
-            mb: 4,
             color: "primary.main",
           }}
         >
           Songkarten erstellen
         </Typography>
-
-        <TextField
-          label="Link zu deiner Spotify Playlist"
-          value={playlistLink}
-          onChange={handlePlaylistLinkChange}
-          fullWidth
-          sx={{
-            mb: 4,
-            borderRadius: 1,
-          }}
-        />
-
-        <FormControl fullWidth sx={{ mb: 4 }}>
-          <TextField
-            label="Kategorie (Diese wird auf den Kärtchen sichtbar sein)"
-            value={category}
-            onChange={handleCategoryChange}
-            fullWidth
-            sx={{
-              mb: 4,
-              borderRadius: 1,
-            }}
-          />
-        </FormControl>
-
-        <Box sx={{ display: "flex", gap: 2 }}>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{
-              fontWeight: "bold",
-              width: "100%",
-            }}
-            onClick={handleLoadSongs}
-            disabled={!playlistLink || !category}
-          >
-            Songkarten generieren
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{
-              fontWeight: "bold",
-              width: "100%",
-            }}
-            onClick={handleLoadSongs}
-            disabled={!playlistLink || !category}
-          >
-            PDF generieren
-          </Button>
+        <Box display={"flex"} flexDirection={"column"} gap={2} mt={4} mb={2}>
+          <FormControl fullWidth>
+            <TextField
+              label="Spotify Playlist Link"
+              fullWidth
+              sx={{
+                borderRadius: 1,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "primary.main", // Outline Farbe
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "primary.main", // Hover-Farbe für die Border
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "primary.main", // Fokus-Farbe für die Border
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: "primary.main", // Label-Farbe
+                },
+                "& .MuiInputBase-input": {
+                  color: "primary.main", // Value (Text) Farbe
+                },
+                "& .MuiInputBase-input::placeholder": {
+                  color: "primary.main", // Placeholder-Farbe
+                },
+              }}
+              onChange={handlePlaylistLinkChange}
+              value={playlistLink}
+            />
+          </FormControl>
+          <FormControl fullWidth>
+            <TextField
+              label="Kategorie"
+              fullWidth
+              sx={{
+                borderRadius: 1,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "primary.main", // Outline Farbe
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "primary.main", // Hover-Farbe für die Border
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "primary.main", // Fokus-Farbe für die Border
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: "primary.main", // Label-Farbe
+                },
+                "& .MuiInputBase-input": {
+                  color: "primary.main", // Value (Text) Farbe
+                },
+                "& .MuiInputBase-input::placeholder": {
+                  color: "primary.main", // Placeholder-Farbe
+                },
+              }}
+              onChange={handleCategoryChange}
+              value={category}
+            />
+          </FormControl>
         </Box>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            fontWeight: "bold",
+            width: "100%",
+          }}
+          onClick={handleLoadSongs}
+          disabled={!playlistLink || !category}
+        >
+          PDF generieren
+        </Button>
       </Container>
-      <Container>
-        {/* <PlaylistGrid playlistItems={playlistItems} /> */}
+      <Container sx={{ height: 1 }}>
         {playlistItems ? (
           <PdfCards playlistItems={playlistItems} name={category} />
         ) : null}

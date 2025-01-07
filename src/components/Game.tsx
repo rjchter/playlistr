@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { Box, Button, Container } from "@mui/material";
-import { useLocation, useNavigate } from "react-router";
+import { Box, Button, Typography } from "@mui/material";
+import { Link, useLocation, useNavigate } from "react-router";
 import { PlaylistedTrack, Track } from "@spotify/web-api-ts-sdk";
-import SongInfoCard from "./SongInfoCard.tsx";
+import SongCard from "./SongCard.tsx";
 
 function Game() {
   const location = useLocation();
   const navigate = useNavigate();
   const playlistItems: PlaylistedTrack<Track>[] = location.state?.playlistItems;
+  const playlistCategory: string = location.state?.category;
   const [card, setCard] = useState<PlaylistedTrack<Track>>();
   const [deck, setDeck] = useState<PlaylistedTrack<Track>[]>([
     ...playlistItems,
   ]);
+  const [resetFlip, setResetFlip] = useState<boolean>(false);
+  // const [isDrawing, setIsDrawing] = useState<boolean>(false);
 
   if (!playlistItems || playlistItems.length === 0) {
     navigate("/game");
@@ -22,37 +25,49 @@ function Game() {
     const randomIndex = Math.floor(Math.random() * deck.length);
     const card = deck[randomIndex];
 
-    setDeck(deck.filter((_, index) => index !== randomIndex));
-    setCard(card);
+    // setIsDrawing(true);
+    setResetFlip(true);
+
+    setTimeout(() => {
+      setDeck(deck.filter((_, index) => index !== randomIndex));
+      setCard(card);
+      setResetFlip(false);
+      // setIsDrawing(false);
+    }, 300);
   };
 
   return (
-    <>
-      {deck.length === 0 ? (
-        <p>Keine Karten mehr im Deck!</p>
-      ) : (
-        <Button variant="contained" onClick={drawCard}>
-          Karte ziehen
-        </Button>
-      )}
-      {card && (
-        <Container maxWidth="xs">
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      gap={2.5}
+    >
+      <Typography variant={"h4"} color={"primary.main"}>
+        Du spielst gerade "{playlistCategory}"
+      </Typography>
+      <Box>
+        {deck.length === 0 ? (
           <Box
-            sx={{
-              position: "relative",
-              width: "100%",
-              height: 280,
-              textAlign: "center",
-              transformStyle: "preserve-3d",
-              transition: "transform 0.6s",
-              transform: "rotateY(180deg)",
-            }}
+            display={"flex"}
+            flexDirection={"column"}
+            alignItems={"center"}
+            justifyContent={"center"}
           >
-            <SongInfoCard track={card.track} onClick={() => {}} />
+            <Typography>Keine Karten mehr im Deck!</Typography>
+            <Button component={Link} to={"/game"}>
+              Zurück zur Übersicht
+            </Button>
           </Box>
-        </Container>
-      )}
-    </>
+        ) : (
+          <Button variant="contained" onClick={drawCard}>
+            Karte vom Stapel ziehen
+          </Button>
+        )}
+      </Box>
+      {card && <SongCard track={card.track} resetFlip={resetFlip} />}
+    </Box>
   );
 }
 

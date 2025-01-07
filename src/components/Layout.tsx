@@ -11,7 +11,7 @@ function Layout() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        overflowY: "auto",
+        padding: 4,
       }}
     >
       <Outlet />

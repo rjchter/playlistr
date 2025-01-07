@@ -39,7 +39,7 @@ function MainGamePage() {
 
   const handleStartGame = () => {
     navigate("/game/play", {
-      state: { playlistItems },
+      state: { playlistItems, category },
     });
   };
 
@@ -143,22 +143,28 @@ function MainGamePage() {
               fontWeight: "bold",
             }}
             onClick={handleLoadSongs}
+            disabled={!playlistLink || !category}
           >
-            Load Playlist
+            Playlist importieren
           </Button>
-          <Box>
-            {playlistItems && (
-              <Alert severity="success" sx={{ backgroundColor: "transparent" }}>
-                Playlist wurde erfolgreich geladen!
-              </Alert>
-            )}
-            {isLoading && <CircularProgress />}
-            {isError && (
-              <Alert severity="error">
-                Es ist ein Fehler aufgetreten. Versuche es später erneut
-              </Alert>
-            )}
-          </Box>
+          {playlistItems || isError || isLoading ? (
+            <Box>
+              {playlistItems && (
+                <Alert
+                  severity="success"
+                  sx={{ backgroundColor: "transparent" }}
+                >
+                  Playlist wurde erfolgreich geladen!
+                </Alert>
+              )}
+              {isLoading && <CircularProgress />}
+              {isError && (
+                <Alert severity="error">
+                  Es ist ein Fehler aufgetreten. Versuche es später erneut
+                </Alert>
+              )}
+            </Box>
+          ) : null}
           <Button
             variant="contained"
             color="primary"

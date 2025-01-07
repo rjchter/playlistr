@@ -4,7 +4,7 @@ import { Track } from "@spotify/web-api-ts-sdk";
 
 type SongInfoCardProps = {
   track: Track;
-  onClick: (id: string) => void;
+  onClick: () => void;
 };
 
 function SongInfoCard({ track, onClick }: SongInfoCardProps) {
@@ -25,6 +25,23 @@ function SongInfoCard({ track, onClick }: SongInfoCardProps) {
       }}
     >
       <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        {/* Spotify Attribution */}
+        <Typography
+          variant="caption"
+          sx={{
+            mt: 2,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "text.secondary",
+          }}
+        >
+          <img
+            src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png"
+            alt="Spotify Logo"
+            style={{ height: 16, marginRight: 4 }}
+          />
+        </Typography>
         <Typography variant="h6" color="text.secondary">
           {track.name}
         </Typography>
@@ -41,7 +58,7 @@ function SongInfoCard({ track, onClick }: SongInfoCardProps) {
           {track.artists.map((artist) => artist.name).join(", ")}
         </Typography>
         <IconButton
-          onClick={() => onClick}
+          onClick={onClick}
           sx={{ position: "absolute", bottom: 16, right: 16 }}
         >
           <LoopIcon />
