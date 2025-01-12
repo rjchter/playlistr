@@ -1,6 +1,6 @@
 # 🎵 Playlistr.
 
-Playlistr is a local Spotify-powered app and an extension for the popular game **HITSTER**, perfect for creating and playing music-based games with printable QR code cards or virtual gameplay. 🎶
+Playlistr is a local Spotify-powered app and an extension for the popular game **HITSTER**. It lets you create music-based games using your own playlists or songs, without being tied to HITSTER’s presets. Simply generate printable cards for your Spotify playlist and play! 🎶
 ---
 
 ## 🚀 Features
