@@ -44,142 +44,144 @@ function MainGamePage() {
   };
 
   return (
-    <Card
-      sx={{
-        maxWidth: 400,
-        width: "100%",
-        borderRadius: 2,
-        boxShadow: 3,
-        p: 2,
-      }}
-    >
-      <CardContent>
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
-          color="text.secondary"
-        >
-          Spiele Hitster mit deiner eigenen Playlist!
-        </Typography>
-        <Box display={"flex"} flexDirection={"column"} gap={2} mt={2} mb={2}>
-          <FormControl fullWidth>
-            <TextField
-              label="Spotify Playlist Link"
-              fullWidth
-              sx={{
-                borderRadius: 1,
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "primary.main", // Outline Farbe
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "primary.main", // Hover-Farbe für die Border
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "primary.main", // Fokus-Farbe für die Border
-                  },
-                },
-                "& .MuiInputLabel-root": {
-                  color: "primary.main", // Label-Farbe
-                },
-                "& .MuiInputBase-input": {
-                  color: "primary.main", // Value (Text) Farbe
-                },
-                "& .MuiInputBase-input::placeholder": {
-                  color: "primary.main", // Placeholder-Farbe
-                },
-              }}
-              onChange={handlePlaylistLinkChange}
-              value={playlistLink}
-            />
-          </FormControl>
-          <FormControl fullWidth>
-            <TextField
-              label="Kategorie"
-              fullWidth
-              sx={{
-                borderRadius: 1,
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "primary.main", // Outline Farbe
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "primary.main", // Hover-Farbe für die Border
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "primary.main", // Fokus-Farbe für die Border
-                  },
-                },
-                "& .MuiInputLabel-root": {
-                  color: "primary.main", // Label-Farbe
-                },
-                "& .MuiInputBase-input": {
-                  color: "primary.main", // Value (Text) Farbe
-                },
-                "& .MuiInputBase-input::placeholder": {
-                  color: "primary.main", // Placeholder-Farbe
-                },
-              }}
-              onChange={handleCategoryChange}
-              value={category}
-            />
-          </FormControl>
-        </Box>
-        <Box
-          display={"flex"}
-          flexDirection={"column"}
-          gap={1.5}
-          justifyContent={"center"}
-          alignItems={"center"}
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
+    <Box sx={{ paddingX: 4 }}>
+      <Card
+        sx={{
+          maxWidth: 400,
+          width: "100%",
+          borderRadius: 2,
+          boxShadow: 3,
+          p: 2,
+        }}
+      >
+        <CardContent>
+          <Typography
+            variant="h5"
             sx={{
               fontWeight: "bold",
+              textAlign: "center",
             }}
-            onClick={handleLoadSongs}
-            disabled={!playlistLink || !category}
+            color="text.secondary"
           >
-            Playlist importieren
-          </Button>
-          {playlistItems || isError || isLoading ? (
-            <Box>
-              {playlistItems && (
-                <Alert
-                  severity="success"
-                  sx={{ backgroundColor: "transparent" }}
-                >
-                  Playlist wurde erfolgreich geladen!
-                </Alert>
-              )}
-              {isLoading && <CircularProgress />}
-              {isError && (
-                <Alert severity="error">
-                  Es ist ein Fehler aufgetreten. Versuche es später erneut
-                </Alert>
-              )}
-            </Box>
-          ) : null}
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{
-              fontWeight: "bold",
-            }}
-            disabled={!playlistItems}
-            onClick={handleStartGame}
+            Spiele Hitster mit deiner eigenen Playlist!
+          </Typography>
+          <Box display={"flex"} flexDirection={"column"} gap={2} mt={2} mb={2}>
+            <FormControl fullWidth>
+              <TextField
+                label="Spotify Playlist Link"
+                fullWidth
+                sx={{
+                  borderRadius: 1,
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "primary.main", // Outline Farbe
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "primary.main", // Hover-Farbe für die Border
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "primary.main", // Fokus-Farbe für die Border
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "primary.main", // Label-Farbe
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "primary.main", // Value (Text) Farbe
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "primary.main", // Placeholder-Farbe
+                  },
+                }}
+                onChange={handlePlaylistLinkChange}
+                value={playlistLink}
+              />
+            </FormControl>
+            <FormControl fullWidth>
+              <TextField
+                label="Kategorie"
+                fullWidth
+                sx={{
+                  borderRadius: 1,
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "primary.main", // Outline Farbe
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "primary.main", // Hover-Farbe für die Border
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "primary.main", // Fokus-Farbe für die Border
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "primary.main", // Label-Farbe
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "primary.main", // Value (Text) Farbe
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "primary.main", // Placeholder-Farbe
+                  },
+                }}
+                onChange={handleCategoryChange}
+                value={category}
+              />
+            </FormControl>
+          </Box>
+          <Box
+            display={"flex"}
+            flexDirection={"column"}
+            gap={1.5}
+            justifyContent={"center"}
+            alignItems={"center"}
           >
-            Spiel starten
-          </Button>
-        </Box>
-      </CardContent>
-    </Card>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{
+                fontWeight: "bold",
+              }}
+              onClick={handleLoadSongs}
+              disabled={!playlistLink || !category}
+            >
+              Playlist importieren
+            </Button>
+            {playlistItems || isError || isLoading ? (
+              <Box>
+                {playlistItems && (
+                  <Alert
+                    severity="success"
+                    sx={{ backgroundColor: "transparent" }}
+                  >
+                    Playlist wurde erfolgreich geladen!
+                  </Alert>
+                )}
+                {isLoading && <CircularProgress />}
+                {isError && (
+                  <Alert severity="error">
+                    Es ist ein Fehler aufgetreten. Versuche es später erneut
+                  </Alert>
+                )}
+              </Box>
+            ) : null}
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{
+                fontWeight: "bold",
+              }}
+              disabled={!playlistItems}
+              onClick={handleStartGame}
+            >
+              Spiel starten
+            </Button>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
 
