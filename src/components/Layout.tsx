@@ -14,7 +14,6 @@ function Layout() {
       }}
     >
       <Box
-        padding={4}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -34,7 +33,7 @@ function Layout() {
         }}
       >
         <Typography variant="body2" color="text.secondary">
-          © 2024 Playlistr - Entwickelt von{" "}
+          © 2024 Playlistr -{" "}
           <a style={{ color: "inherit" }} href="https://github.com/rjchter">
             rjchter
           </a>{" "}

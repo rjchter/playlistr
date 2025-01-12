@@ -43,8 +43,9 @@ function Game() {
       justifyContent="center"
       alignItems="center"
       gap={2.5}
+      sx={{ paddingX: 4 }}
     >
-      <Typography variant={"h4"} color={"primary.main"}>
+      <Typography variant={"h5"} color={"primary.main"}>
         Du spielst gerade "{playlistCategory}"
       </Typography>
       <Box>
