@@ -22,8 +22,6 @@ function CardGenerator() {
     isLoading,
   } = useFetchPlaylistItems(playlistLink);
 
-  console.log(playlistItems);
-
   const handlePlaylistLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlaylistLink(e.target.value);
   };
@@ -37,7 +35,14 @@ function CardGenerator() {
   };
 
   return (
-    <Box height={1} display={"flex"} flexDirection={"column"} gap={4} width={1}>
+    <Box
+      height={1}
+      display={"flex"}
+      flexDirection={"column"}
+      gap={4}
+      width={1}
+      sx={{ paddingY: 4 }}
+    >
       <Container maxWidth="sm" sx={{ textAlign: "center" }}>
         <Typography
           variant="h3"
