@@ -1,8 +1,24 @@
-import { Container, Box, Typography, Button, useTheme } from "@mui/material";
+import {
+  Container,
+  Box,
+  Typography,
+  Button,
+  useTheme,
+  Alert,
+} from "@mui/material";
 import { Link } from "react-router";
+import { useSpotify } from "../hooks/useSpotify.ts";
+import { Scopes } from "@spotify/web-api-ts-sdk";
 
 function LandingPage() {
   const theme = useTheme();
+  const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID as string;
+  const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI as string;
+  const { isAuthenticated, authorize } = useSpotify(
+    clientId,
+    redirectUri,
+    Scopes.playlistRead
+  );
 
   return (
     <>
@@ -12,9 +28,19 @@ function LandingPage() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          paddingX: 2,
         }}
       >
-        <Container maxWidth="lg" sx={{ textAlign: "center" }}>
+        <Container
+          maxWidth="lg"
+          sx={{
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Typography
             variant="h3"
             sx={{
@@ -36,8 +62,7 @@ function LandingPage() {
               fontSize: { xs: "1.75rem", sm: "2.25rem", md: "3rem" },
             }}
           >
-            Baue dein eigenes Musikspiel – Errate die Songs und hol dir den
-            Sieg!
+            Deine personalisierte Version von Hitster
           </Typography>
           <Typography
             variant="body1"
@@ -49,46 +74,66 @@ function LandingPage() {
               fontSize: "1.125rem",
             }}
           >
-            Playlistr – die Weiterentwicklung des beliebten Spiels Hitster. Mit
-            Playlistr kannst du deine eigene, personalisierte Version erstellen
-            – perfekt abgestimmt auf deinen Musikgeschmack. Ein Spiel nur mit
-            Oldies? Kein Problem! Oder eine Version, bei der die
-            Erscheinungsjahre von Filmsoundtracks erraten werden? Alles ist
-            möglich. Nutze den Kartengenerator, um im Handumdrehen eine
-            druckbare Vorlage für deine Spotify-Playlist zu erstellen.
+            Erstelle mit Playlistr dein eigenes Musikspiel, perfekt abgestimmt
+            auf deinen Geschmack. Nur Oldies? Kein Problem! Filmsoundtracks?
+            Klar! Mit dem Kartengenerator gestaltest du im Handumdrehen eine
+            druckbare Vorlage für deine Spotify-Playlist.
           </Typography>
           <Box
             sx={{
               display: "flex",
+              flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              gap: "1.5rem",
+              gap: "1rem",
+              width: "100%",
             }}
           >
-            <Button
-              component={Link}
-              to="/game"
-              variant="contained"
-              sx={{
-                fontWeight: "bold",
-              }}
-            >
-              Spielen
-            </Button>
-            <Button
-              component={Link}
-              to="/create-cards"
-              variant="text"
-              sx={{
-                color: "text.primary",
-                fontWeight: "bold",
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }}
-            >
-              Spielkärtchen erstellen
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <Button
+                  component={Link}
+                  to="/game"
+                  variant="contained"
+                  sx={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Spielen
+                </Button>
+                <Button
+                  component={Link}
+                  to="/create-cards"
+                  variant="text"
+                  sx={{
+                    color: "text.primary",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Spielkärtchen erstellen
+                </Button>
+              </>
+            ) : null}
+            <Box>
+              {!isAuthenticated ? (
+                <Alert severity="error" sx={{ backgroundColor: "transparent" }}>
+                  Spotify ist nicht verbunden!
+                </Alert>
+              ) : (
+                <Alert
+                  severity="success"
+                  sx={{ backgroundColor: "transparent" }}
+                >
+                  Spotify erfolgreich verbunden!
+                </Alert>
+              )}
+              {!isAuthenticated && (
+                <Button variant="contained" color="primary" onClick={authorize}>
+                  Mit Spotify verbinden
+                </Button>
+              )}
+            </Box>
           </Box>
         </Container>
       </Box>
