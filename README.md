@@ -122,3 +122,9 @@ yarn install
 ## 🌟 Enjoy Playlistr!
 
 Have fun creating and playing with music! Let the guessing begin! 🎧🎉
+
+---
+
+## 👏 Credits
+
+I would like to sincerely thank [tunequest](https://github.com/tunequest) for the inspiration! Thank you for the support and the great idea!
